@@ -35,11 +35,3 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
     ],
 )
-",
-    packages=setuptools.find_packages(),
-    install_requires=REQUIRED,
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-    ],
-)
