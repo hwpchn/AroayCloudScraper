@@ -16,3 +16,14 @@ AROAY_CLOUDSCRAPER_DELAY = 1
 #必须设置，否则报错
 COMPRESSION_ENABLED = False
 ```
+
+# 代理使用
+
+```
+    def start_requests(self):
+        for page in range(1, 2):
+            yield CloudScraperRequest(self.base_url, callback=self.parse_index, dont_filter=True, proxy={
+                "http": "http://username:password@ip:port",
+                "https": "http://username:password@ip:port",
+            },cookies={"over18":"1"},timeout=5)
+```
