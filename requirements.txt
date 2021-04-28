@@ -1,1 +1,2 @@
-cloudscraper==1.2.58
+cloudscraper>=1.2.58
+scrapy>=2.0.0
