@@ -24,6 +24,9 @@ AROAY_CLOUDSCRAPER_DELAY = 1
 
 #必须设置，否则报错
 COMPRESSION_ENABLED = False
+
+RETRY_ENABLED: True
+RETRY_TIMES: 3
 ```
 
 # 代理使用
