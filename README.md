@@ -1,6 +1,15 @@
 # AroayCloudScraper
 scrapy一个插件，绕过cloudflare检测，主要是封装 cloudscraper模块
 
+# 使用，在setting添加
+
+```
+DOWNLOADER_MIDDLEWARES = {
+    'aroay_cloudscraper.downloadermiddlewares.CloudScraperMiddleware': 543,
+}
+
+```
+
 # 需setting设置
 
 ```
@@ -15,6 +24,9 @@ AROAY_CLOUDSCRAPER_DELAY = 1
 
 #必须设置，否则报错
 COMPRESSION_ENABLED = False
+
+RETRY_ENABLED: True
+RETRY_TIMES: 3
 ```
 
 # 代理使用
