@@ -4,7 +4,6 @@ from functools import partial
 import twisted.internet
 import cloudscraper
 from scrapy.http import HtmlResponse
-from scrapy.utils.python import global_object_name
 from twisted.internet.asyncioreactor import AsyncioSelectorReactor
 from twisted.internet.defer import Deferred
 import sys
@@ -88,16 +87,19 @@ class CloudScraperMiddleware(object):
 
         # 设置代理
         _proxy = cloudscraper_meta.get('proxy')
-        logger.info("set proxy is %s" %_proxy)
+        logger.info("set proxy is %s" % _proxy)
 
         # 设置请求超时
         _timeout = self.download_timeout
         if cloudscraper_meta.get('timeout') is not None:
             _timeout = cloudscraper_meta.get('timeout')
+        _headers = cloudscraper_meta.get('headers')
+        _cookies = cloudscraper_meta.get('cookies ')
 
         logger.debug('crawling %s', request.url)
 
-        response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout)
+        response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout, headers=_headers,
+                                        cookies=_cookies)
 
         # 设置延迟
         _delay = self.delay
