@@ -1,5 +1,5 @@
 # AroayCloudScraper
-scrapy一个插件，绕过cloudflare检测，主要是封装 cloudscraper模块
+scrapy一个插件，绕过cloudflare检测，主要是封装 cloudscraper模块，并且将cloudscraper模块在scrapy中异步执行
 
 # 使用，在setting添加
 
