@@ -21,7 +21,7 @@ with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name="aroay_cloudscraper",
-    version="1.2",
+    version="1.3",
     author="hwpchn",
     author_email="13692839895@163.com",
     description="scrapy的一个下载中间件，绕过cloudflare检测",
