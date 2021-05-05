@@ -8,7 +8,8 @@ class JavdbSpider(scrapy.Spider):
     headers = {"Accept-Language": "zh-cn;q=0.8,en-US;q=0.6"}
 
     def start_requests(self):
-        yield CloudScraperRequest("https://javdb.com/v/BOeQO", callback=self.parse,headers=self.headers)
+        yield CloudScraperRequest("https://javdb.com/v/BOeQO", callback=self.parse
+                                  )
 
     def parse(self, response):
         print(response.text)

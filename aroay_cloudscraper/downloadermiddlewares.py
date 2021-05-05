@@ -97,10 +97,11 @@ class CloudScraperMiddleware(object):
         _cookies = cloudscraper_meta.get('cookies ')
 
         logger.debug('crawling %s', request.url)
-
-        response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout, headers=_headers,
-                                        cookies=_cookies)
-
+        if _headers:
+            response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout, headers=_headers,
+                                            cookies=_cookies)
+        else:
+            response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout, cookies=_cookies)
         # 设置延迟
         _delay = self.delay
         if cloudscraper_meta.get('delay') is not None:
