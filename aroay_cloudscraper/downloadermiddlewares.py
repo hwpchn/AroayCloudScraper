@@ -37,7 +37,11 @@ class CloudScraperMiddleware(object):
     """
 
     def __init__(self):
-        self.scraper = cloudscraper.create_scraper(browser='chrome')
+        self.scraper = cloudscraper.create_scraper(browser={
+            'browser': 'firefox',
+            'platform': 'windows',
+            'mobile': False
+        })
 
     # 将cloudflare变为协程函数
     def _block_get(self, url, *args, **kwargs):
@@ -93,15 +97,12 @@ class CloudScraperMiddleware(object):
         _timeout = self.download_timeout
         if cloudscraper_meta.get('timeout') is not None:
             _timeout = cloudscraper_meta.get('timeout')
-        _headers = cloudscraper_meta.get('headers')
         _cookies = cloudscraper_meta.get('cookies ')
 
         logger.debug('crawling %s', request.url)
-        if _headers:
-            response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout, headers=_headers,
-                                            cookies=_cookies)
-        else:
-            response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout, cookies=_cookies)
+        response = await self.async_get(request.url, proxies=_proxy, timeout=_timeout,
+                                        cookies=_cookies)
+
         # 设置延迟
         _delay = self.delay
         if cloudscraper_meta.get('delay') is not None:
